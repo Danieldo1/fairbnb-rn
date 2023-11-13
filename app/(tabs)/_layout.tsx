@@ -11,7 +11,6 @@ const Layout = () => {
         tabBarLabelStyle: {
             fontFamily: 'mon-sb'
         }
-        
         }}>
             {/* Explore tab */}
         <Tabs.Screen name="index" options={{ tabBarLabel: 'Explore',
