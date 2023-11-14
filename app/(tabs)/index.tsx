@@ -5,6 +5,9 @@ import { defaultStyles } from '@/constants/Styles'
 import ExploreHeader from '@/components/ExploreHeader'
 import Listings from '@/components/Listings'
 import listingsData from '@/assets/data/airbnb-listings.json'
+import Maps from '@/components/Maps'
+import listingDataGeo from '@/assets/data/airbnb-listings.geo.json'
+
 
 const Page = () => {
   const [category, setCategory] = useState('Tiny Homes')
@@ -22,7 +25,8 @@ const Page = () => {
           header: () => <ExploreHeader onCategoryChange={onDataChange} />,
         }}
       />
-      <Listings category={category} listings={items} />
+      {/* <Listings category={category} listings={items} /> */}
+        <Maps listings={listingDataGeo} />
     </View>
   )
 }
