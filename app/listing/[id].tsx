@@ -1,5 +1,5 @@
 import { View, Text,StyleSheet, Dimensions, TouchableOpacity,Image, Share } from 'react-native'
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import listingData from  '@/assets/data/airbnb-listings.json'
 import Animated, { SlideInDown, interpolate, useAnimatedRef, useAnimatedStyle, useScrollViewOffset } from 'react-native-reanimated'
@@ -13,9 +13,12 @@ const {width} = Dimensions.get('window')
 const Page = () => {
     const scrollRef = useAnimatedRef<Animated.ScrollView>()
     const scrollOffset= useScrollViewOffset(scrollRef)
-  
+    const [isTapped, setIsTapped] = useState(false);
+
     const {id} = useLocalSearchParams<{id: string}>();
     const listing = (listingData as any[]).find((item)=> item.id == id)
+
+    
 
     const imgAnimatedStyle = useAnimatedStyle(()=>{
       return {
@@ -40,6 +43,12 @@ const Page = () => {
         console.log(error)
       }
     }
+
+
+    const handleTap = () => {
+      setIsTapped((prevIsTapped) => !prevIsTapped);
+    };
+  
     useLayoutEffect(() => {
       navigation.setOptions({
         headerBackground: () => (
@@ -50,9 +59,13 @@ const Page = () => {
             <TouchableOpacity style={styles.roundButton} onPress={share}>
               <Ionicons name='share-outline' size={24} color={'#000'} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.roundButton} onPress={share}>
-              <Ionicons name='heart-outline' size={24} color={'#000'} />
-            </TouchableOpacity>
+            <TouchableOpacity style={styles.roundButton} onPress={handleTap}>
+            <Ionicons
+              name={isTapped ? 'heart' : 'heart-outline'}
+              size={24}
+              color={isTapped ? Colors.primary : '#000'}
+              />
+          </TouchableOpacity>
           </View>
         ),
         headerLeft: () => (
@@ -61,7 +74,7 @@ const Page = () => {
           </TouchableOpacity>
         )
       })
-    },[])
+    },[isTapped])
 
     const headerAnimated = useAnimatedStyle(()=>{
       return {

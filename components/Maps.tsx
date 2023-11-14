@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+import  { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { useRouter } from 'expo-router'
 import { defaultStyles } from '@/constants/Styles'
 import Colors from '@/constants/Colors'
+import MapView from 'react-native-map-clustering'
 
 
 interface Props {
@@ -14,16 +15,41 @@ const Maps = ({listings}:Props) => {
   const onMarker =(event:any)=>{
       router.push(`/listing/${event.properties.id}`)
   }
+  const renderCluster = (cluster: any) => {
+    const {id,geometry,onPress,properties} = cluster
+    const points = properties.point_count
+    return(
+      <Marker 
+      key={`cluster-${id}`} 
+      onPress={onPress}
+      coordinate={{
+        latitude: geometry.coordinates[1],
+        longitude: geometry.coordinates[0],
+      }}>
+        <View style={[styles.marker,{paddingHorizontal:8,paddingVertical:8,borderRadius:100}]}>
+          <Text style={{
+            color: '#000',
+            textAlign: 'center',
+            fontFamily: 'mon-sb'
+          }}>{points}</Text>
+        </View>
+      </Marker>
+    )
+  }
   return (
     <View style={{ flex: 1 }}>
     <MapView
+    animationEnabled={false}
       style={{ flex: 1 }}
       showsUserLocation
       showsMyLocationButton
-      provider='google'
+      provider={PROVIDER_GOOGLE }
+      clusterColor={Colors.primary}
+      clusterFontFamily={'mon-sb'}
+      renderCluster={renderCluster}
       initialRegion={{
-        latitude: 40.730610,
-        longitude: -73.935242,
+        latitude: 45.523064,
+        longitude: -122.676483,
         latitudeDelta: 0.8522, // Adjust as needed
         longitudeDelta: 0.0221, // Adjust as needed
       }}
@@ -64,13 +90,21 @@ const styles = StyleSheet.create({
   marker:{
     backgroundColor: '#fff',
     padding:4,
-    elevation:9,
+    elevation:3,
     borderWidth: 0.25,
     borderColor: Colors.primary,
     marginBottom: 12,
     borderRadius: 15,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 1,
+      height: 1
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 5.84,
+
   },
   markerTxt:{
     fontFamily: 'mon-sb',
