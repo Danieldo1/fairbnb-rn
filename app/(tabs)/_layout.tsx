@@ -29,7 +29,7 @@ const Layout = () => {
     tabBarIcon: ({ color, size }) =>  <MaterialCommunityIcons name='message-outline' color={color} size={size} />
     }} />
             {/* Profile tab */}
-<Tabs.Screen name="profile" options={{ tabBarLabel: 'Profile',
+<Tabs.Screen name="profile" options={{ tabBarLabel: 'Profile', headerShown: false,
     tabBarIcon: ({ color, size }) =>  <Ionicons name='person-circle-outline' color={color} size={size} />
     }} />
 
