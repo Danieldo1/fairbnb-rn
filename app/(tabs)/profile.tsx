@@ -18,14 +18,17 @@ const Profile = () => {
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    if(!user) {return}
+    if (!user) {
+      return;
+    }
 
-    setFirstName(user.firstName)
-    setLastName(user.lastName)
-    setEmail(user.emailAddresses[0].emailAddress)
-  },[user])
+    setFirstName(user.firstName);
+    setLastName(user.lastName);
+    setEmail(user.emailAddresses[0].emailAddress);
+  }, [user]);
 
   const saveUser = async() => {
+
     try {
       if (!firstName || !lastName) {
         return;
@@ -76,7 +79,7 @@ const Profile = () => {
           <View style={styles.edit}>
             <TextInput placeholder='First Name' value={firstName || ''} onChangeText={setFirstName} style={[defaultStyles.inputBox,{width: 100}]} />
             <TextInput placeholder='Last Name' value={lastName || ''} onChangeText={setLastName} style={[defaultStyles.inputBox,{width: 100}]} />
-               <TouchableOpacity onPress={saveUser}>
+               <TouchableOpacity onPress={() => saveUser()}>
                 <Ionicons name='checkmark-outline' size={20} color={'#000'} />
               </TouchableOpacity>
           </View>
@@ -90,7 +93,7 @@ const Profile = () => {
         )}
         </View>
         <Text style={{fontFamily: 'mon-sb', fontSize: 16}}>{email}</Text>
-        <Text style={{fontFamily: 'mon-sb', fontSize: 14}}>since {user?.createdAt?.toLocaleDateString()}</Text>
+        <Text style={{fontFamily: 'mon-sb', fontSize: 14}}>Since {user?.createdAt?.toLocaleDateString()}</Text>
       </View>
     )}
 

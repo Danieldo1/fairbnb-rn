@@ -32,7 +32,7 @@ const ListingsSheet = ({listings,category}: Props) => {
             <View style={styles.absBtn}>
                 <TouchableOpacity onPress={openMap} style={styles.roundButton}>
                     <Ionicons name='map-outline' size={20} color={'#fff'} />
-                    <Text style={{fontFamily:'mon-b',color: '#fff',fontWeight:'bold'}}>Map</Text>
+                    <Text style={{fontFamily:'mon-b',color: '#fff',fontWeight:'bold',marginLeft:8}}>Map</Text>
                 </TouchableOpacity>
             </View>
         </View>
