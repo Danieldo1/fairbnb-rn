@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo'
+import ModalHeader from '@/components/ModalHeader';
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY
 
@@ -95,6 +96,7 @@ function RootLayoutNav() {
             presentation: 'transparentModal',
             animation: 'fade',
             headerTransparent: true,
+            headerTitle: ()=> <ModalHeader />,
             headerLeft: ()=> (
               <TouchableOpacity onPress={() => router.back()}  >
                 <Ionicons name='close-outline' size={28} />
