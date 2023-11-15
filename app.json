@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "fairbnb",
+    "name": "FairBnB",
     "slug": "fairbnb",
+    "description": "Airbnb clone with React Native and Expo. This is my Test project to learn React Native and Expo.",
+    "privacy": "public",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
