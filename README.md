@@ -1,7 +1,7 @@
 
 
 # FairBnB
-![Apps run through](https://i.ibb.co/0fccb8G/Untitled-design-1.gif)
+![Apps run through](./gif/capture.gif)
 
 FairBnB is a React Native project that brings the Airbnb experience to your mobile device. With a focus on the main home page, users are presented with a curated list of rentals in the vibrant city of Portland, Oregon. Leveraging the Google Maps API, each rental is marked on the map with precise coordinates for an enhanced user experience.
 
