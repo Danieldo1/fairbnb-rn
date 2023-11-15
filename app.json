@@ -18,13 +18,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.danieldo19.fairbnb"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.danieldo19.fairbnb"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +39,21 @@
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "738d7f8a-9e2f-4bd2-9041-6cad8026f7bd"
+      }
+    },
+    "owner": "danieldo19",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/738d7f8a-9e2f-4bd2-9041-6cad8026f7bd"
     }
   }
 }
