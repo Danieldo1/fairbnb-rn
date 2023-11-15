@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { memo } from 'react'
 import  { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { useRouter } from 'expo-router'
 import { defaultStyles } from '@/constants/Styles'
@@ -10,7 +10,7 @@ import MapView from 'react-native-map-clustering'
 interface Props {
     listings:any
 }
-const Maps = ({listings}:Props) => {
+const Maps = memo(({listings}:Props) => {
   const router = useRouter()
   const onMarker =(event:any)=>{
       router.push(`/listing/${event.properties.id}`)
@@ -71,7 +71,7 @@ const Maps = ({listings}:Props) => {
     </MapView>
   </View>
   )
-}
+})
 
 export default Maps
 
