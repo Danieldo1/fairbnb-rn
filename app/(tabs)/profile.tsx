@@ -42,7 +42,20 @@ const Profile = () => {
   };
 
   const captureImg = async() => {
-    
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      base64: true,
+      quality: 0.75,
+    });
+
+    if (!result.canceled) {
+      const base64 = `data:image/jpg;base64,${result.assets[0].base64}`;
+      user?.setProfileImage({
+        file: base64,
+
+      })
+    }
   }
 
   return (
@@ -83,7 +96,7 @@ const Profile = () => {
 
 
       {isSignedIn && <Button title='Logout'  onPress={() => signOut()} color={Colors.dark}/>}
-      {!isSignedIn && <Link href={'/(modals)/login'} asChild><Button title='Login' /></Link> }
+      {!isSignedIn && <Link href={'/(modals)/login'} asChild><Button color={Colors.dark} title='Login' /></Link> }
     </View>
     </SafeAreaView>
   )
